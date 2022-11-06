@@ -1,3 +1,5 @@
+package letovo.server.warn;
+
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.FileWriter;
@@ -8,13 +10,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import java.util.ArrayList;
 public class CommandHandler implements CommandExecutor {
     
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
         if (cmd.getName().equalsIgnoreCase("warn")){
-            LOGGER.info("warn command issued by " + sender);
+            Plugin.LOGGER.info("warn command issued by " + sender);
             String nickname = args[0];
 
             // Read list of warned players from file
@@ -53,7 +56,7 @@ public class CommandHandler implements CommandExecutor {
                     myWriter.write(warns);
                     myWriter.close();
                 } catch (IOException e) {
-                    LOGGER.info("An error occurred while adding a person to warned list.");
+                    Plugin.LOGGER.info("An error occurred while adding a person to warned list.");
                     e.printStackTrace();
                 }
             }

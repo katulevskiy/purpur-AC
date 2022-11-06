@@ -1,12 +1,9 @@
-package letovo.server;
+package letovo.server.warn;
 
 import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.FileReader;
 import java.io.IOException;
-import CommandHandler;
 
 public class Plugin extends JavaPlugin
 {

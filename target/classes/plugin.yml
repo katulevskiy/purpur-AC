@@ -1,5 +1,5 @@
 name: warn-system
-main: letovo.server.warn-system.Plugin
+main: letovo.server.warn.Plugin
 version: 1.0-SNAPSHOT
 api-version: 1.15
 authors: ["Penumbrae (aka Doouble1337)"]
