@@ -7,7 +7,12 @@ public class CommandHandler implements CommandExecutor {
 
         if (cmd.getName().equalsIgnoreCase("warn")){
             LOGGER.info("warn command issued by " + sender);
+            String nickname = args[0];
             return true;
+        }
+
+        else{
+            LOGGER.info("command " + cmd + " not recognized");
         }
 
         return false;

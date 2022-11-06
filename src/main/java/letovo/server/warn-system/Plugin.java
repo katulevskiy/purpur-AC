@@ -8,11 +8,15 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class Plugin extends JavaPlugin
 {
+  private CommandHandler commandHandler;
+
   public static final Logger LOGGER=Logger.getLogger("warn-system");
 
   public void onEnable()
   {
     LOGGER.info("warn-system enabled");
+    commandHandler = new CommandHandler();
+    getCommand("warn").setExecutor(commandHandler);
   }
 
   public void onDisable()
