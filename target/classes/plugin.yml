@@ -1,0 +1,5 @@
+name: warn-system
+main: letovo.server.warn-system.Plugin
+version: 1.0-SNAPSHOT
+api-version: 1.15
+description: Allow Vulcan AC to warn players, so that they get banned after 5 cheat detections.
