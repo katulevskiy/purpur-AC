@@ -11,6 +11,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import java.util.ArrayList;
+import java.util.Arrays;
 public class CommandHandler implements CommandExecutor {
     
     @Override
@@ -21,7 +22,8 @@ public class CommandHandler implements CommandExecutor {
             String nickname = args[0];
 
             // Read list of warned players from file
-            ArrayList<ArrayList<String>> filedata = new ArrayList<ArrayList<String>>();
+            ArrayList<String> filedata = new ArrayList<String>();
+
             try {
                 File myObj = new File("warns.txt");
                 Scanner myReader = new Scanner(myObj);
@@ -35,14 +37,18 @@ public class CommandHandler implements CommandExecutor {
                 e.printStackTrace();
             }
             
-            ArrayList <String> users = filedata[0];
-            ArrayList <String> warns = filedata[1];
+            String[] users = filedata.get(0).split(", ");
+            String[] warnsStringArray = filedata.get(1).split(", ");
+            int[] warns = new int[warnsStringArray.length];
+            for (int i = 0; i < warnsStringArray.length; i++){
+                warns[i] = Integer.parseInt(warnsStringArray[i]);
+            }
 
             int userwarns = 0;
 
-            if(users.contais(nickname)){
-                warns[users.indexOf(nickname)] += 1;
-                userwarns = warns[users.indexOf(nickname)];
+            if(Arrays.asList(users).contains(nickname)){
+                warns[Arrays.asList(users).indexOf(nickname)] = warns[Arrays.asList(users).indexOf(nickname)] + 1;
+                userwarns = warns[Arrays.asList(users).indexOf(nickname)];
             }
 
             else{
