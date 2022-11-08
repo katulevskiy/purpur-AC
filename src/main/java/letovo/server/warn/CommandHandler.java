@@ -45,37 +45,41 @@ public class CommandHandler implements CommandExecutor {
             }
 
             int userwarns = 0;
+            String newusers;
+            String newwarns;
 
             if(Arrays.asList(users).contains(nickname)){
-                warns[Arrays.asList(users).indexOf(nickname)] = warns[Arrays.asList(users).indexOf(nickname)] + 1;
+                warns[Arrays.asList(users).indexOf(nickname)] += 1;
                 userwarns = warns[Arrays.asList(users).indexOf(nickname)];
+                warnsStringArray[Arrays.asList(users).indexOf(nickname)] = String.valueOf(userwarns);
+                newusers = String.join(", ", users);
+                newwarns = String.join(", ", warnsStringArray);
             }
 
-            // TODO: Fix the addition of user to the list of warnings
-
             else{
-                users.add(nickname);
-                warns.add(1);
+                newusers = String.join(", ", users);
+                newusers += ", " + nickname;
+                newwarns = String.join(", ", warnsStringArray);
+                newwarns += ", 1";
                 userwarns += 1;
-                // Add a warn to person
-                try {
-                    FileWriter myWriter = new FileWriter("warns.txt");
-                    myWriter.write(users);
-                    myWriter.write(warns);
-                    myWriter.close();
-                } catch (IOException e) {
-                    Plugin.LOGGER.info("An error occurred while adding a person to warned list.");
-                    e.printStackTrace();
-                }
+            }
+
+            try {
+                FileWriter myWriter = new FileWriter("warns.txt");
+                myWriter.write(newusers);
+                myWriter.write(newwarns);
+                myWriter.close();
+            } catch (IOException e) {
+                Plugin.LOGGER.info("An error occurred while adding a person to warned list.");
+                e.printStackTrace();
             }
 
 
             // TODO: Issue with Bukkit command sending
 
             if (userwarns >= 5){
-                ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
                 String command = "ban " + nickname + " [LETOVO ANTICHEAT] SKILL ISSUE";
-                Bukkit.dispatchCommand(console, command);
+                Plugin.sendCommand(command);
             }
 
             return true;

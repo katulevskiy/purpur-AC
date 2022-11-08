@@ -33,6 +33,10 @@ public class Plugin extends JavaPlugin
     getCommand("warn").setExecutor(commandHandler);
   }
 
+  public void sendCommand(String cmd){
+    getServer().dispatchCommand(getServer().getConsoleSender(), cmd);
+  }
+
   public void onDisable()
   {
     LOGGER.info("warn-system disabled");
