@@ -51,6 +51,8 @@ public class CommandHandler implements CommandExecutor {
                 userwarns = warns[Arrays.asList(users).indexOf(nickname)];
             }
 
+            // TODO: Fix the addition of user to the list of warnings
+
             else{
                 users.add(nickname);
                 warns.add(1);
@@ -67,6 +69,9 @@ public class CommandHandler implements CommandExecutor {
                 }
             }
 
+
+            // TODO: Issue with Bukkit command sending
+
             if (userwarns >= 5){
                 ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
                 String command = "ban " + nickname + " [LETOVO ANTICHEAT] SKILL ISSUE";
@@ -77,7 +82,7 @@ public class CommandHandler implements CommandExecutor {
         }
 
         else{
-            LOGGER.info("command " + cmd + " not recognized");
+            Plugin.LOGGER.info("command " + cmd + " not recognized");
         }
 
         return false;
