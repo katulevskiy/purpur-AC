@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.IOException;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -74,12 +75,9 @@ public class CommandHandler implements CommandExecutor {
                 e.printStackTrace();
             }
 
-
-            // TODO: Issue with Bukkit command sending
-
             if (userwarns >= 5){
                 String command = "ban " + nickname + " [LETOVO ANTICHEAT] SKILL ISSUE";
-                Plugin.sendCommand(command);
+                Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), command);
             }
 
             return true;
